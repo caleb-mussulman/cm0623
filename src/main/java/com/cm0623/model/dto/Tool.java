@@ -10,7 +10,7 @@ public class Tool {
 
     private String code;
     private String brand;
-    private String toolName;
+    private String toolTypeName;
     private BigDecimal chargeAmount;
     private Boolean isWeekdayCharge;
     private Boolean isWeekendCharge;
@@ -19,7 +19,7 @@ public class Tool {
     public Tool(ToolEntity entity) {
         this.setCode(entity.getCode());
         this.setBrand(entity.getBrand());
-        this.setToolName(entity.getToolTypeEntity().getToolName());
+        this.setToolTypeName(entity.getToolTypeEntity().getToolName());
         this.setChargeAmount(entity.getToolTypeEntity().getChargeAmount());
         this.setIsWeekdayCharge(entity.getToolTypeEntity().getIsWeekdayCharge());
         this.setIsWeekendCharge(entity.getToolTypeEntity().getIsWeekendCharge());

@@ -1,9 +1,10 @@
-package com.cm0623.model.dto;
+package com.cm0623.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -29,25 +30,21 @@ public class RentalAgreement {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
-    // TODO different type for currency
     @JsonProperty("daily_rental_charge_amount")
-    private Integer dailyRentalChargeAmount;
+    private BigDecimal dailyRentalChargeAmount;
 
     @JsonProperty("chargeable_day_count")
     private Integer chargeableDayCount;
 
-    // TODO different type for currency
     @JsonProperty("pre_discount_charge_amount")
-    private Integer preDiscountChargeAmount;
+    private BigDecimal preDiscountChargeAmount;
 
     @JsonProperty("discount_percent")
     private Integer discountPercent;
 
-    // TODO different type for currency
     @JsonProperty("discount_amount")
-    private Integer discountAmount;
+    private BigDecimal discountAmount;
 
-    // TODO different type for currency
     @JsonProperty("final_charge_amount")
-    private Integer finalChargeAmount;
+    private BigDecimal finalChargeAmount;
 }

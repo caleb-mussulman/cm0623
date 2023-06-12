@@ -1,4 +1,4 @@
-package com.cm0623.model.dto;
+package com.cm0623.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
