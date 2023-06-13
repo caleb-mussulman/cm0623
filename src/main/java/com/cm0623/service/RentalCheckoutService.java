@@ -5,12 +5,15 @@ import com.cm0623.model.domain.CheckoutForm;
 import com.cm0623.model.domain.RentalAgreement;
 import com.cm0623.model.dto.RentalCalendar;
 import com.cm0623.model.dto.Tool;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Validated
 @Service
 public class RentalCheckoutService {
 
@@ -22,7 +25,7 @@ public class RentalCheckoutService {
         this.toolDao = toolDao;
         this.rentalCalendarService = rentalCalendarService;
     }
-    public RentalAgreement createRentalAgreement(CheckoutForm checkoutForm) {
+    public RentalAgreement createRentalAgreement(@Valid CheckoutForm checkoutForm) {
         Tool tool = toolDao.getToolById(checkoutForm.getToolCode());
         RentalCalendar rentalCalendar = rentalCalendarService.constructRentalCalendar(checkoutForm.getCheckoutDate(), checkoutForm.getRentalDayCount());
 

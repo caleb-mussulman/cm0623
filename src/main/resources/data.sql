@@ -1,3 +1,6 @@
+DELETE FROM tool;
+DELETE FROM tool_type;
+
 INSERT INTO tool_type
 (id, tool_name, charge_amount, is_weekday_charge, is_weekend_charge, is_holiday_charge)
 VALUES

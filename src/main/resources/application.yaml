@@ -1,4 +1,8 @@
+# If this were an application that would be deployed in production, I would definitely have separate configs for dev, test, stage, and prod
 server:
+  error:
+    include-message: always
+    include-binding-errors: always
   servlet:
     context-path: /depot
 spring:

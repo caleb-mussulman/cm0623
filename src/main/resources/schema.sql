@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS depot;
 SET SCHEMA depot;
 
-CREATE TABLE tool_type(
+CREATE TABLE IF NOT EXISTS tool_type(
     id BIGINT PRIMARY KEY,
     tool_name VARCHAR NOT NULL,
     charge_amount DECIMAL(15,2) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE tool_type(
     is_holiday_charge BOOLEAN NOT NULL
 );
 
-CREATE TABLE tool(
+CREATE TABLE IF NOT EXISTS tool(
     code VARCHAR PRIMARY KEY,
     tool_type_id BIGINT,
     brand VARCHAR

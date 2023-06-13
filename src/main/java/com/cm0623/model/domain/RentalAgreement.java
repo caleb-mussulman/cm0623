@@ -1,8 +1,8 @@
 package com.cm0623.model.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,11 +23,11 @@ public class RentalAgreement {
     private Integer rentalDayCount;
 
     @JsonProperty("checkout_date")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkoutDate;
 
     @JsonProperty("due_date")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
     @JsonProperty("daily_rental_charge_amount")

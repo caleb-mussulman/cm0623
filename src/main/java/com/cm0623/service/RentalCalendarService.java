@@ -1,7 +1,7 @@
 package com.cm0623.service;
 
 import com.cm0623.model.dto.RentalCalendar;
-import org.springframework.lang.NonNull;
+import jakarta.validation.constraints.Min;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -15,7 +15,7 @@ import static java.time.temporal.TemporalAdjusters.firstInMonth;
 @Service
 public class RentalCalendarService {
 
-    public RentalCalendar constructRentalCalendar(LocalDate checkoutDate, Integer rentalDayCount) {
+    public RentalCalendar constructRentalCalendar(LocalDate checkoutDate, @Min(value = 1, message = "Please provide an integer value greater than or equal to 1") Integer rentalDayCount) {
         int holidayCount = 0;
         int weekdayCount = 0;
         int weekendCount = 0;
@@ -27,6 +27,7 @@ public class RentalCalendarService {
         // add a day to make the range inclusive of the last day
         List<LocalDate> days = rentalStartDate.datesUntil(rentalEndDate.plus(1, ChronoUnit.DAYS)).toList();
 
+        // a given rental day is either a holiday (based on the definition for a holiday), weekday, or weekend
         for(LocalDate day : days) {
             if(isHoliday(day)) {
                 holidayCount++;
@@ -53,6 +54,10 @@ public class RentalCalendarService {
     }
 
     private boolean isIndependenceDay(LocalDate day) {
+        // If July 4th falls on a weekday, then it is observed as a holiday;
+        // If July 4th falls on the weekend, then the closest weekday is observed:
+        // So, July 3rd on a Friday is a holiday,
+        // and July 5th on a Monday is a holiday
         if(Month.JULY.equals(day.getMonth())) {
             if (day.getDayOfMonth() == 4 && isWeekday(day)) {
                 return true;
