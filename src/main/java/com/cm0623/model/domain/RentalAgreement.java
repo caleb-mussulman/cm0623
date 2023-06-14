@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 public class RentalAgreement {
@@ -47,4 +48,21 @@ public class RentalAgreement {
 
     @JsonProperty("final_charge_amount")
     private BigDecimal finalChargeAmount;
+
+    @Override
+    public String toString() {
+        return "RentalAgreement:" +
+               "\n  Tool code: " + toolCode +
+               "\n  Tool type: " + toolType +
+               "\n  Tool brand: " + toolBrand +
+               "\n  Rental days: " + rentalDayCount +
+               "\n  Check out date: " + checkoutDate.format(DateTimeFormatter.ofPattern("MM/dd/yy")) +
+               "\n  Due date: " + dueDate.format(DateTimeFormatter.ofPattern("MM/dd/yy")) +
+               "\n  Daily rental charge: " + String.format("$%,.2f", dailyRentalChargeAmount) +
+               "\n  Charge days: " + chargeableDayCount +
+               "\n  Pre-discount charge: " + String.format("$%,.2f", preDiscountChargeAmount) +
+               "\n  Discount percent: " + String.format("%d%%", discountPercent) +
+               "\n  Discount amount: " + String.format("$%,.2f", discountAmount) +
+               "\n  Final charge: " + String.format("$%,.2f", finalChargeAmount);
+    }
 }
